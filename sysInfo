@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo "Getting System Info..."
+
+echo "username: $USER"
+echo "login as: $(whoami)"
+echo "Charge: $(lspower)"
+
+uptime -p
+
+if [[ $(neofetch --version) =~ ^"Neofetch" ]] ; then
+  neofetch;
+else fastfetch;
+
+fi
+
+echo -e "\n =================== Bios details ======================= \n"
+sudo dmidecode --type bios  
+
+echo -e "========================== CPU details ======================== \n" 
+lscpu
+
+echo -e "\n ======================= Memory details ======================\n"
+sudo dmidecode --type memory | grep -Ei "locater|speed|type|size|memory|capacity"
+
+echo "========================== Memory stats =========================="
+free -h
+
