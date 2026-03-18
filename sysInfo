@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Getting System Info..."
 
@@ -8,16 +8,15 @@ echo "Charge: $(lspower)"
 
 uptime -p
 
-if [[ $(neofetch --version) =~ ^"Neofetch" ]]; then
-  neofetch;
-elif [[ $(fastfetch --version) =~ ^"Fastfetch" ]]; then
-    fastfetch;
-else hostnamectl;
-
-fi
+#if [[ $(neofetch --version) =~ ^"Neofetch" ]]; then
+#  neofetch;
+#elif [[ $(fastfetch --version) =~ ^"Fastfetch" ]]; then
+#    fastfetch;
+#fi
+hostnamectl;
 
 echo -e "\n =================== Bios details ======================= \n"
-sudo dmidecode --type bios  
+sudo dmidecode --type bios
 
 echo -e "========================== CPU details ======================== \n" 
 lscpu
