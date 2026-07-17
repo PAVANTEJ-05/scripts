@@ -2,6 +2,7 @@
 
 # DYNAMIC WALLPAPER (just add wallpapers to your folder it will be used as wallpapers)
 # add to this script to cronjob to change wallpapers 
+# $ crontab -e  then add  then add this line  0 0 * * * ~/scripts/dynamicWallpaper
 
 # shopt to not return the null filenames as output
 shopt -s nullglob;
