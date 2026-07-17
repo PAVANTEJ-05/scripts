@@ -30,5 +30,6 @@ echo $rand;
 echo "${files[$rand]}";
 
 #setting wallpaper for gnome DE
-gsettings set org.gnome.desktop.background picture-uri-dark "${files[$rand]}";
+gsettings set org.gnome.desktop.background picture-uri "${files[$rand]}"; # for light-mode
+gsettings set org.gnome.desktop.background picture-uri-dark "${files[$rand]}"; #for dark-mode
 
