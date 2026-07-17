@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# DYNAMIC WALLPAPER (just add wallpapers to your folder it will be used as wallpapers)
+# add to this script to cronjob to change wallpapers 
+
+# shopt to not return the null filenames as output
+shopt -s nullglob;
+
+# storing all the wallpapers into file array of png,jpg,jpeg only (ignoring other files)
+#edit below path as per your wallpaper location
+files=($HOME/Pictures/wallpapers/*.{png,jpg,jpeg});
+
+# no.of files
+size=${#files[@]};
+echo "no.of available wallpapers: $size"; 
+
+# uncomment below line to check all the wallpapers listed in files
+# printf '%q\n' "${files[@]}"
+
+# for handling no wallpapers case
+if (( size == 0)) 
+	then 
+		echo "no wallpapers"; 
+		exit 1; 
+fi
+
+# random wallaper selection
+rand=$((RANDOM % $size));
+echo $rand;
+echo "${files[$rand]}";
+
+#setting wallpaper for gnome DE
+gsettings set org.gnome.desktop.background picture-uri-dark "${files[$rand]}";
+
