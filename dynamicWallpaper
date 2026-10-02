@@ -1,5 +1,6 @@
 #!/bin/bash
-
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 # DYNAMIC WALLPAPER (just add wallpapers to your folder it will be used as wallpapers)
 # add to this script to cronjob to change wallpapers 
 # $ crontab -e  then add  then add this line  0 0 * * * ~/scripts/dynamicWallpaper
@@ -13,6 +14,7 @@ files=($HOME/Pictures/wallpapers/*.{png,jpg,jpeg});
 
 # no.of files
 size=${#files[@]};
+echo "[$(date)]"
 echo "no.of available wallpapers: $size"; 
 
 # uncomment below line to check all the wallpapers listed in files
@@ -27,10 +29,11 @@ fi
 
 # random wallaper selection
 rand=$((RANDOM % $size));
-echo $rand;
-echo "${files[$rand]}";
+# echo $rand
+echo "wallpaper set: ${files[$rand]}";
+echo "---"
 
 #setting wallpaper for gnome DE
-gsettings set org.gnome.desktop.background picture-uri "${files[$rand]}"; # for light-mode
-gsettings set org.gnome.desktop.background picture-uri-dark "${files[$rand]}"; #for dark-mode
+gsettings set org.gnome.desktop.background picture-uri "file://${files[$rand]}"; # for light-mode
+gsettings set org.gnome.desktop.background picture-uri-dark "file://${files[$rand]}"; #for dark-mode
 
